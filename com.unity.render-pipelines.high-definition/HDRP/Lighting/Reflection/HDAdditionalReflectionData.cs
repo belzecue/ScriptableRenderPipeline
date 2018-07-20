@@ -5,6 +5,7 @@ using UnityEngine.Rendering;
 namespace UnityEngine.Experimental.Rendering
 {
     [RequireComponent(typeof(ReflectionProbe))]
+    [ExecuteInEditMode]
     public class HDAdditionalReflectionData : HDProbe, ISerializationCallbackReceiver
     {
         const int currentVersion = 3;
@@ -59,10 +60,22 @@ namespace UnityEngine.Experimental.Rendering
             }
         }
 
-        private void OnEnable()
+        void OnEnable()
         {
             if (needMigrateToHDProbeChild)
                 MigrateToUseInfluanceVolume();
+        }
+
+        void Awake()
+        {
+            legacyProbe.size = Vector3.zero;
+        }
+
+        void Update()
+        {
+            legacyProbe.size = Vector3.zero;
+            //legacyProbe.bounds = new Bounds(transform.position,Vector3.zero);
+            legacyProbe.blendDistance = 0;
         }
 
         void MigrateToHDProbeChild()

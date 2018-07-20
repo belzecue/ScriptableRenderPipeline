@@ -16,7 +16,7 @@ namespace UnityEngine.Experimental.Rendering.HDPipeline
 
         // Box
         [SerializeField, FormerlySerializedAs("m_BoxBaseSize")]
-        Vector3 m_BoxSize = Vector3.one;
+        Vector3 m_BoxSize = Vector3.one * 10;
         [SerializeField, FormerlySerializedAs("m_BoxInfluencePositiveFade")]
         Vector3 m_BoxBlendDistancePositive;
         [SerializeField, FormerlySerializedAs("m_BoxInfluenceNegativeFade")]
